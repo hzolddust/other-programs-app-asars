@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="./icon.ico" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexoGameST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        const origFetch = window.fetch;
+        window.fetch = function(input, init) {
+          const url = (typeof input === 'string') ? input : (input && input.url ? input.url : '');
+          if (url.startsWith('sentry-ipc:')) {
+            return Promise.resolve(new Response(JSON.stringify({ ok: true, status: 'disabled' }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' }
+            }));
+          }
+          return origFetch.apply(this, arguments);
+        };
+        window.addEventListener('error', function(e) {
+          console.error('[REACT ERROR DETAILS]', e.message, e.filename, e.lineno, e.colno, e.error && e.error.stack ? e.error.stack : e.error);
+        });
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-BsMb7DfG.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/state-B3T2PPlo.js">
+    <link rel="modulepreload" crossorigin href="./assets/ui-CeGCqnRS.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-VygcgpiQ.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-DzF95l2N.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
